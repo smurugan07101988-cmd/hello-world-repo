@@ -1,7 +1,7 @@
 name: Hello World
 on:
     schedule:
-        - cron: "*/1 * * * *"
+        - cron: "*/5 * * * *"
 jobs:
     hello-job:
         runs-on: ubuntu-latest
