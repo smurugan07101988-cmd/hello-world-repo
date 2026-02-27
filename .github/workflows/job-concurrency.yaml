@@ -1,4 +1,4 @@
-name: Job-concurrency
+name: Job concurrency
 on:
    workflow-dispatch:
    jobs:
