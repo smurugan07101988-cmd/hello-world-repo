@@ -1,6 +1,7 @@
 name: timeout
 # .github/workflows/deploy.yml
-on: workflow_dispatch
+on: 
+    workflow_dispatch:
 
 env:
   CONTAINER_REGISTRY: docker.io
@@ -8,10 +9,9 @@ env:
 
 jobs:
   docker:
-    # ...
-  deploy:
-    needs: docker
-    concurrency:
+    deploy:
+      needs: docker
+      concurrency:
       group: production-deployment
       cancel-in-progress: false
     runs-on: ubuntu-latest
