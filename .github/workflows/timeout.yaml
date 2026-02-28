@@ -1,0 +1,23 @@
+name: timeout
+# .github/workflows/deploy.yml
+on: workflow_dispatch
+
+env:
+  CONTAINER_REGISTRY: docker.io
+  IMAGE_NAME: github-actions-nginx
+
+jobs:
+  docker:
+    # ...
+  deploy:
+    needs: docker
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Run
+        run: |
+          echo docker run -d -p 8080:80 \
+            $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          sleep 6000s   # ❌ Intended 600s but used 6000s
